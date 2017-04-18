@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-
+    var offerToZoom: Offer?
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     private static let LausanneCenter: CLLocationCoordinate2D = {
         let lat = CLLocationDegrees(46.521)
@@ -20,11 +20,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(listSelected(_:)), name: ListSelectedNotification, object: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refreshButton.isEnabled = false
         setupMap()
+
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,20 +39,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     private func setupMap() {
-
         // Center on Lausanne
         let span = CLLocationDistance(10000)
         let zone = MKCoordinateRegionMakeWithDistance(MapViewController.LausanneCenter, span, span)
-       mapView.setRegion(zone, animated: false)
+        mapView.setRegion(zone, animated: false)
         updateUI()
+        updateZoom()
     }
+    
     @IBAction func refreshTriggered(_ sender: UIBarButtonItem) {
-        sender.isEnabled = false
-        updateUI()
+        refreshButton.isEnabled = false
+        updateUI(clearCache: true)
     }
 
-    private func updateUI() {
-        Store.sharedInstance.getOffers(success: { (offers) in
+    private func updateUI(clearCache: Bool = false) {
+        Store.sharedInstance.getOffers(clearCache: clearCache, success: { (offers) in
             self.mapView.addAnnotations(offers)
             self.refreshButton.isEnabled = true
 
@@ -75,5 +82,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         view?.annotation = annotation
         return view
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+
+        if let offer = view.annotation as? Offer {
+            NotificationCenter.default.post(name: MapSelectedNotification, object: offer)
+        }
+    }
+
+    @objc func listSelected(_ notification: Notification) {
+        guard let offer = notification.object as? Offer else { return }
+        self.offerToZoom = offer
+        updateZoom()
+    }
+
+    private func updateZoom() {
+        guard let offer = offerToZoom else { return }
+
+        let span = CLLocationDistance(500)
+        let zone = MKCoordinateRegionMakeWithDistance(offer.coordinate, span, span)
+        mapView.setRegion(zone, animated: false)
+        mapView.selectAnnotation(offer, animated: true)
+
     }
 }

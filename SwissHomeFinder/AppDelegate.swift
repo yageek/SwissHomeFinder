@@ -8,6 +8,9 @@
 
 import UIKit
 
+let MapSelectedNotification = Notification.Name("net.swisshomefinder.mapselected")
+
+let ListSelectedNotification = Notification.Name("net.swisshomefinder.listselected")
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        NotificationCenter.default.addObserver(self, selector: #selector(mapPinSelected(_:)), name: MapSelectedNotification, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(listSelected(_:)), name: ListSelectedNotification, object: nil)
         return true
     }
 
@@ -41,6 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    @objc func mapPinSelected(_ notification: Notification) {
 
+        guard let tabController = self.window?.rootViewController as? UITabBarController else { return }
+        tabController.selectedIndex = 1
+
+    }
+
+    @objc func listSelected(_ notification: Notification) {
+
+        guard let tabController = self.window?.rootViewController as? UITabBarController else { return }
+        tabController.selectedIndex = 0
+        
+    }
 }
 

@@ -52,7 +52,7 @@ class Offer: NSObject, MKAnnotation {
     }
 
     public var subtitle: String? {
-        return "\(start)-\(price) CHF"
+        return "\(start)-\(price) CHF - \(rooms) pièces"
     }
     
 }

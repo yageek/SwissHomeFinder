@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B06265E1EA5FDF800A171EA /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06265D1EA5FDF800A171EA /* Offer.swift */; };
 		0B0626621EA626C600A171EA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0626611EA626C600A171EA /* Store.swift */; };
+		0B0626641EA63AF700A171EA /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0626631EA63AF700A171EA /* OfferCell.swift */; };
+		0B0626661EA63B9500A171EA /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0626651EA63B9500A171EA /* ListVC.swift */; };
 		0BCB5EC31EA4CB06000857DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB5EC21EA4CB06000857DB /* AppDelegate.swift */; };
 		0BCB5ECA1EA4CB06000857DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCB5EC81EA4CB06000857DB /* Main.storyboard */; };
 		0BCB5ECC1EA4CB06000857DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BCB5ECB1EA4CB06000857DB /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		0B06265D1EA5FDF800A171EA /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		0B0626611EA626C600A171EA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		0B0626631EA63AF700A171EA /* OfferCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
+		0B0626651EA63B9500A171EA /* ListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		0BCB5EBF1EA4CB06000857DB /* SwissHomeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwissHomeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB5EC21EA4CB06000857DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BCB5EC91EA4CB06000857DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +72,9 @@
 				0BCB5ECD1EA4CB06000857DB /* LaunchScreen.storyboard */,
 				0BCB5ED01EA4CB06000857DB /* Info.plist */,
 				0BCB5ED61EA4CB7E000857DB /* MapViewController.swift */,
+				0B0626651EA63B9500A171EA /* ListVC.swift */,
 				0B06265D1EA5FDF800A171EA /* Offer.swift */,
+				0B0626631EA63AF700A171EA /* OfferCell.swift */,
 				0B0626611EA626C600A171EA /* Store.swift */,
 			);
 			path = SwissHomeFinder;
@@ -160,8 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0626661EA63B9500A171EA /* ListVC.swift in Sources */,
 				0B06265E1EA5FDF800A171EA /* Offer.swift in Sources */,
 				0BCB5EC31EA4CB06000857DB /* AppDelegate.swift in Sources */,
+				0B0626641EA63AF700A171EA /* OfferCell.swift in Sources */,
 				0BCB5ED71EA4CB7E000857DB /* MapViewController.swift in Sources */,
 				0B0626621EA626C600A171EA /* Store.swift in Sources */,
 			);
